@@ -16,6 +16,25 @@ RSpec.describe 'Notifications', type: :request do
       expect(json_response.data['attributes']).to eq({'description' => 'Accounts need to be reconciled', 'user-id' => 42})
     end
 
+    it 'returns an error with invalid parameters - user_id' do
+      post "/notifications", params: { description: 'Accounts need to be reconciled' }
+
+      expect(json_response.errors.user_id).to include("can't be blank")
+    end
+
+    it 'returns an error with invalid parameters - description' do
+      post "/notifications", params: { user_id: 44 }
+
+      expect(json_response.errors.description).to include("can't be blank")
+    end
+
+    it 'description has a cap of 200 characters' do
+      test_string = "x " * 101
+      post "/notifications", params: { user_id: 44, description: test_string}
+
+      expect(json_response.errors.description).to include('is too long (maximum is 200 characters)')
+    end
+
     describe 'on GET index' do
 
       it 'returns all notifications' do
