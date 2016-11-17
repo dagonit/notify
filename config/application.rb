@@ -15,5 +15,6 @@ Bundler.require(*Rails.groups)
 module Notify
   class Application < Rails::Application
     config.api_only = true
+    ActiveModelSerializers.config.adapter = :json_api
   end
 end

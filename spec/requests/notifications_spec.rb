@@ -10,12 +10,24 @@ RSpec.describe 'Nofitications', type: :request do
 
 
   describe 'on POST create' do
+    before { post "/notifications", params }
 
     it 'returns new notification' do
-      post "/notifications", params
+      expect(json_response.data['attributes']).to eq({'description' => 'Accounts need to be reconciled', 'user-id' => 42})
+    end
 
-      expect(json_response.notification).to eq({'description' => 'Accounts need to be reconciled', 'user_id' => '42'})
+    describe 'on GET index' do
+
+      it 'returns all notifications' do
+        get "/notifications?user_id=42"
+
+        expect(json_response.data.first['attributes']).to include({'description' => 'Accounts need to be reconciled', 'user-id' => 42})
+      end
+
     end
 
   end
+
+
+
 end
