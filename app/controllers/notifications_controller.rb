@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
   def create
     notification = Notification.create(accetable_params!)
 
-    render json: { errors: notification.errors}, status: 422 and return unless notification.valid?
+    render json: { errors: notification.errors }, status: 422 and return unless notification.valid?
     render json: notification
   end
 
