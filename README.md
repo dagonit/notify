@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Using serializer
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+For existing models, create a serializer to restrict attributes in response.
+* rails g serializer existing_model
+* add attributes to serializer
+``` ruby
+class ExistingModelSerializer < ActiveModel::Serializer
+  attributes :attribute1, :attribute2
+end'
