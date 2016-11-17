@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20161117171359) do
   create_table "notifications", force: :cascade do |t|
     t.text     "description"
     t.integer  "user_id"
-    t.boolean  "active"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "active",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end

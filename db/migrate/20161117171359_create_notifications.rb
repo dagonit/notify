@@ -3,7 +3,7 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
     create_table :notifications do |t|
       t.text :description
       t.integer :user_id
-      t.boolean :active
+      t.boolean :active, default: true
 
       t.timestamps
     end
