@@ -28,14 +28,11 @@ RSpec.describe 'Notifications', type: :request do
 
     describe 'delete notification' do
 
-      it 'a notification is active by default' do
-        expect(Notification.last.active).to be true
-      end
-
       it 'changes active from true to false' do
         delete "/notifications/#{Notification.last.id}?user_id=42"
 
-        expect(Notification.last.active).to be false
+        expect(json_response.message).to include("notification deleted")
+        # expect(Notification.last.active).to be false
       end
 
       it 'errors on notification that does not exist' do

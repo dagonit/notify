@@ -16,7 +16,7 @@ class NotificationsController < ApplicationController
     notification = Notification.find_by(id: params[:id])
 
     render json: { errors: 'notification not found' }, status: 404 and return unless notification
-    render json: notification.deactivate
+    render json: { message: 'notification deleted' } and notification.deactivate
   end
 
 private
