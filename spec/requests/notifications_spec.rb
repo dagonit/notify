@@ -32,7 +32,6 @@ RSpec.describe 'Notifications', type: :request do
         delete "/notifications/#{Notification.last.id}?user_id=42"
 
         expect(json_response.message).to include("notification deleted")
-        # expect(Notification.last.active).to be false
       end
 
       it 'errors on notification that does not exist' do
