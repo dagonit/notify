@@ -1,7 +1,12 @@
 class NotificationsController < ApplicationController
 
   def index
-    notifications = Notification.where(user_id: params[:user_id])
+    notifications = if params[:user_id]
+                      Notification.where(user_id: params[:user_id])
+                    else
+                      Notification.all
+                    end
+                    
     render json: notifications, status: 200
   end
 
